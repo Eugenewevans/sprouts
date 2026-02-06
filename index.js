@@ -60,7 +60,7 @@ app.post('/add-participant', authenticate, async (req, res) => {
     // Append the row to the sheet
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'Sheet1!A:C', // Adjust if your sheet has a different name
+      range: 'upload!A:C',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [[participantName, childDob, parentGuardianName]]
@@ -88,7 +88,7 @@ app.get('/participants', authenticate, async (req, res) => {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'Sheet1!A:C',
+      range: 'upload!A:C',
     });
 
     const rows = response.data.values || [];
